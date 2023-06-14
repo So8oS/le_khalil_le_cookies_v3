@@ -4,4 +4,13 @@
 
 body {
   font-family: "VT323", monospace;
+  /* Option 1  */
+
+  background-image: url("/pattern18px.png");
+  background-repeat: repeat;
+  background-color: #8a653b;
+
+  /* Option 2  */
+
+  /* background-color: #2a324b;   */
 }
