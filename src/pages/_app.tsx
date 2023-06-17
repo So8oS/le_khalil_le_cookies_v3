@@ -2,12 +2,19 @@
 import Navbar from "@/components/Navbar";
 import "./../styles/globals.css";
 import type { AppProps } from "next/app";
+import { Footer } from "@/components/Footer";
+import { SessionProvider } from "next-auth/react";
 
-export default function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   return (
     <div className="">
-      <Navbar />
-      <Component {...pageProps} />
+      <SessionProvider session={pageProps.session}>
+        <Navbar />
+        <Component {...pageProps} />
+        <Footer />
+      </SessionProvider>
     </div>
   );
 }
+
+export default App;
