@@ -16,7 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const userId = await prismadb.user.findUnique({
       where: {
-        email: session.user?.email,
+        email: session?.user?.email,
       },
       select: {
         id: true,

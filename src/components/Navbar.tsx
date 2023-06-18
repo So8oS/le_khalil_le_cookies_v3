@@ -12,38 +12,25 @@ const Navbar = () => {
   const [open, setOpen] = useAtom(navOpenAtom);
   const [cartOpen, setCartOpen] = useAtom(cartOpenAtom);
   return (
-    <div className="shadow bg-[#eee5e5]">
-      <div className="flex h-12 justify-between items-center   ">
+    <div className="bg-[#eee5e5]  shadow">
+      <div className="flex h-12 items-center justify-between md:p-1   ">
         <div
-          className="flex justify-center items-center gap-2 cursor-pointer"
+          className="flex cursor-pointer items-center justify-center gap-2"
           onClick={() => {
             window.location.href = "/";
           }}
         >
           <img className="w-12" src="/logo.png" alt="logo" />
-          <h1 className="w-fit text-2xl font-Pacifico font-bold">Le Khalil Le Cookies</h1>
+          <h1 className="w-fit font-Pacifico text-2xl font-bold">Le Khalil Le Cookies</h1>
         </div>
 
         <ul
           className={
             !open
-              ? "md:flex justify-center items-center gap-3 text-xl hidden"
-              : "absolute  flex flex-col justify-center items-center mt-[8.2rem] w-full  bg-[#eee5e5]  md:flex-row md:bg-transparent md:static md:mt-0 md:w-fit  md:text-base md:justify-between md:items-center md:gap-4"
+              ? " hidden items-center justify-center gap-3 text-xl md:flex"
+              : "absolute  mt-[14.2rem] flex w-full flex-col items-center justify-center gap-5  bg-[#eee5e5]  md:static md:mt-0 md:w-fit md:flex-row md:items-center  md:justify-between md:gap-4 md:bg-transparent md:text-base"
           }
         >
-          {session ? (
-            <li
-              onClick={() => {
-                signOut();
-              }}
-              className="text-xl bg-[#F45867] rounded-3xl shadow px-2"
-            >
-              Logout
-            </li>
-          ) : (
-            <Link href="/auth">Sign In</Link>
-          )}
-          {session && <li className="text-xl bg-[#F45867] rounded-3xl shadow px-2">{`Hello ${session.user?.name?.toUpperCase()}`}</li>}
           <li className="cursor-pointer text-xl">Who Are We</li>
           <li className="cursor-pointer  ">
             <img
@@ -51,11 +38,24 @@ const Navbar = () => {
                 setCartOpen(!cartOpen);
                 setOpen(false);
               }}
-              className="w-8 cursor-pointer m-3 "
+              className="w-8 cursor-pointer "
               src="/bag.svg"
               alt="bag"
             />
           </li>
+          {session && <li className="rounded-3xl bg-[#F45867] px-2 text-xl shadow">{`Hello ${session.user?.name?.toUpperCase()}`}</li>}
+          {session ? (
+            <li
+              onClick={() => {
+                signOut();
+              }}
+              className="mb-2 cursor-pointer rounded-3xl bg-[#F45867] px-2 text-xl shadow md:mb-0"
+            >
+              Logout
+            </li>
+          ) : (
+            <Link href="/auth">Sign In</Link>
+          )}
         </ul>
         <img
           onClick={() => {
@@ -67,7 +67,7 @@ const Navbar = () => {
         />
       </div>
       {cartOpen && (
-        <div className="flex justify-center items-center ">
+        <div className="flex items-center justify-center ">
           <Cart />
         </div>
       )}

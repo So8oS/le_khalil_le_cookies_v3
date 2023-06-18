@@ -12,8 +12,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     const orders = await prismadb.order.findMany({
-      include: {
+      select: {
+        id: true,
         items: true,
+        total: true,
+        date: true,
+        status: true,
+        user: {
+          select: {
+            name: true,
+            email: true,
+          },
+        },
       },
     });
 

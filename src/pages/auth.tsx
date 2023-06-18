@@ -83,20 +83,20 @@ const Auth = () => {
         <form onSubmit={handleSubmit(varient === "login" ? login : userRegister)}>
           <div className="mt-6 flex flex-col items-center justify-center gap-7   ">
             {varient === "register" && (
-              <div className="flex h-16 w-full min-w-[17rem] flex-row items-center  gap-2 rounded-xl border  bg-white pl-2 text-xl shadow outline-none ">
+              <div className="flex h-16 w-full  flex-row items-center  gap-2 rounded-xl border  bg-white pl-2 text-xl shadow outline-none ">
                 <AiOutlineUser className="w-5 text-[#828282]" />
-                <input className="outline-none " {...register("name")} type="text" placeholder="Name" />
+                <input className="w-full outline-none " {...register("name")} type="text" placeholder="Name" />
               </div>
             )}
-            <div className="flex h-16 w-full max-w-[30rem] flex-row items-center  gap-2 rounded-xl border  bg-white pl-2 text-xl shadow outline-none ">
+            <div className="flex h-16 w-full  flex-row items-center  gap-2 rounded-xl border  bg-white pl-2 text-xl shadow outline-none ">
               <MdEmail className="w-5 text-[#828282]" />
-              <input className="w-full outline-none " {...register("email", { required: "Email is required" })} type="email" placeholder="Email" />
+              <input className="w-full  outline-none " {...register("email", { required: "Email is required" })} type="email" placeholder="Email" />
             </div>
             {/*@ts-ignore */}
             {errors.email && <p className="animate-pulse text-red-500">{errors.email.message}</p>}
             <div className="flex h-16 w-full flex-row items-center gap-2  rounded-xl border bg-white  pl-2 text-xl shadow outline-none sm:min-w-[17rem] ">
               <AiFillLock className="w-5 text-[#828282]" />
-              <input className="outline-none " {...register("password", { required: "Password is required" })} type="password" placeholder="Password" />
+              <input className="w-full  outline-none" {...register("password", { required: "Password is required" })} type="password" placeholder="Password" />
             </div>
             {/*@ts-ignore */}
             {errors.password && <p className="animate-pulse text-red-500">{errors.password.message}</p>}

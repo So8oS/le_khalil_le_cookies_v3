@@ -48,7 +48,9 @@ model Order {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   items     Item[]
-  total   Float
+  total     Float
+  status    String   @default("pending")
+  date      String?  @default("Not set")
   userId    String   @db.ObjectId
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
