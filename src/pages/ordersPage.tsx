@@ -1,11 +1,38 @@
 import OrderList from "@/components/OrderList";
+import { getSession } from "next-auth/react";
 import React from "react";
+import { NextPageContext } from "next";
+import useCurrentUser from "../../lib/useCurrentUser";
+
+export async function getServerSideProps(context: NextPageContext) {
+  const session = await getSession(context);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+}
 
 const OrdersPage = () => {
+  const { data: user } = useCurrentUser();
   return (
-    <div className="min-h-screen px-4">
-      <OrderList />
-    </div>
+    <>
+      {user?.role === "ADMIN" ? (
+        <div className="min-h-screen px-4">
+          <OrderList />
+        </div>
+      ) : (
+        <div className="min-h-screen px-4">nothing to see here</div>
+      )}
+    </>
   );
 };
 

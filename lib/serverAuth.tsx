@@ -19,9 +19,23 @@ const serverAuth = async (req: NextApiRequest) => {
       name: true,
       email: true,
       role: true,
+      orders: {
+        select: {
+          id: true,
+          items: true,
+          total: true,
+          date: true,
+          status: true,
+          user: {
+            select: {
+              name: true,
+              email: true,
+            },
+          },
+        },
+      },
     },
   });
-
   if (!currentUser) {
     throw new Error(`not signed in`);
   }

@@ -6,10 +6,13 @@ import { TiDelete } from "react-icons/ti";
 import { AiFillMinusCircle } from "react-icons/ai";
 import { AiFillPlusCircle } from "react-icons/ai";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CheckOut = () => {
   const [items, setItems] = useAtom(cartAtom);
   const [cartOpen, setCartOpen] = useAtom(cartOpenAtom);
+  const notify = () => toast("Order Sent");
 
   const itemsWithoutId = items.map(({ id, ...rest }) => rest);
   console.log(itemsWithoutId);
@@ -25,39 +28,41 @@ const CheckOut = () => {
       items: itemsWithoutId,
       total,
     });
+    notify();
+    setItems([]);
   };
 
   return (
-    <div className="p-4 shadow bg-[#EEE5E5] border border-black rounded-xl w-full max-w-[65rem]">
+    <div className="w-full max-w-[65rem] rounded-xl border border-black bg-[#EEE5E5] p-4 shadow">
       <div className="flex flex-col justify-center">
         {items.length === 0 ? (
-          <div className="flex flex-col justify-center items-center">
+          <div className="flex flex-col items-center justify-center">
             <h1 className="text-center text-xl">No Items Were Added</h1>
           </div>
         ) : (
           <>
-            <div className="flex justify-center items-center gap-2">
+            <div className="flex items-center justify-center gap-2">
               <img className="w-20" src="/logo.png" alt="logo" />
-              <h1 className="text-3xl font-semibold text-center">Checkout</h1>
+              <h1 className="text-center text-3xl font-semibold">Checkout</h1>
             </div>
-            <div className="flex flex-col gap-2 mt-4">
+            <div className="mt-4 flex flex-col gap-2">
               {items.map((item, idx) => {
                 const totalPrice = item.quantity * item.price;
                 return (
-                  <div key={idx} className="flex sm:flex-row flex-col justify-between items-center bg-[#EBCC9B] rounded-lg text-xl gap-3 p-2  shadow md:hover:scale-105">
-                    <div className="flex sm:flex-row flex-col justify-center text-center gap-2 items-center">
-                      <img src={item.pic} alt={item.name} className="w-40 md:w-32 shadow rounded-lg" />
+                  <div key={idx} className="flex flex-col items-center justify-between gap-3 rounded-lg bg-[#EBCC9B] p-2 text-xl shadow  sm:flex-row md:hover:scale-105">
+                    <div className="flex flex-col items-center justify-center gap-2 text-center sm:flex-row">
+                      <img src={item.pic} alt={item.name} className="w-40 rounded-lg shadow md:w-32" />
                       <h1 className="w-28">{item.name}</h1>
                     </div>
                     <div className="flex gap-5">
                       <h1>{`${item.price} TL`}</h1>
-                      <div className="flex gap-1 justify-center items-center ">
+                      <div className="flex items-center justify-center gap-1 rounded-3xl bg-[#EEE5E5] px-1 ">
                         <AiFillMinusCircle
                           onClick={() => {
                             item.quantity--;
                             setItems((prev) => [...prev]);
                           }}
-                          className="w-5 h-5 text-[#F45867] cursor-pointer hover:scale-105"
+                          className="h-4 w-4 cursor-pointer text-[#F45867] hover:scale-105"
                         />
                         <h1 className="">{item.quantity}X</h1>
                         <AiFillPlusCircle
@@ -65,7 +70,7 @@ const CheckOut = () => {
                             item.quantity++;
                             setItems((prev) => [...prev]);
                           }}
-                          className="w-5 h-5 text-[#F45867] cursor-pointer hover:scale-105"
+                          className="h-4 w-4 cursor-pointer text-[#F45867] hover:scale-105"
                         />
                       </div>
                       <h1>{`${totalPrice} TL`}</h1>
@@ -75,7 +80,7 @@ const CheckOut = () => {
                         setItems((prev) => prev.filter((_, i) => i !== idx));
                       }}
                     >
-                      <TiDelete className="text-[#F45867] w-7 h-7  " />
+                      <TiDelete className="h-7 w-7 text-[#F45867]  " />
                     </button>
                   </div>
                 );
@@ -86,9 +91,10 @@ const CheckOut = () => {
             </div>
           </>
         )}
-        <button onClick={sendOrder} className="text-center bg-[#F45867] text-white  py-2 px-4 rounded-3xl cursor-pointer mt-4">
+        <button onClick={sendOrder} className="mt-4 cursor-pointer rounded-3xl  bg-[#F45867] px-4 py-2 text-center text-white">
           Order
         </button>{" "}
+        <ToastContainer position="top-center" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored" />
       </div>
     </div>
   );

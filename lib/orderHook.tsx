@@ -2,7 +2,7 @@ import useSwr from "swr";
 
 import fetcher from "./fetcher";
 
-const useCurrentUser = () => {
+const OrdersHook = () => {
   const { data, error, isLoading, mutate } = useSwr("/api/getorders", fetcher);
   return {
     data,
@@ -12,4 +12,4 @@ const useCurrentUser = () => {
   };
 };
 
-export default useCurrentUser;
+export default OrdersHook;

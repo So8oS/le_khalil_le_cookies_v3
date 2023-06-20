@@ -8,7 +8,6 @@ import Link from "next/link";
 
 const Navbar = () => {
   const { data: session } = useSession();
-  console.log(session);
   const [open, setOpen] = useAtom(navOpenAtom);
   const [cartOpen, setCartOpen] = useAtom(cartOpenAtom);
   return (
@@ -31,8 +30,10 @@ const Navbar = () => {
               : "absolute  mt-[14.2rem] flex w-full flex-col items-center justify-center gap-5  bg-[#eee5e5]  md:static md:mt-0 md:w-fit md:flex-row md:items-center  md:justify-between md:gap-4 md:bg-transparent md:text-base"
           }
         >
-          <li className="cursor-pointer text-xl">Who Are We</li>
-          <li className="cursor-pointer  ">
+          <Link href={"/whoarewe"} className="cursor-pointer text-xl" onClick={() => setOpen(false)}>
+            Who Are We
+          </Link>
+          <li className="cursor-pointer " onClick={() => setOpen(false)}>
             <img
               onClick={() => {
                 setCartOpen(!cartOpen);
@@ -43,13 +44,13 @@ const Navbar = () => {
               alt="bag"
             />
           </li>
-          {session && <li className="rounded-3xl bg-[#F45867] px-2 text-xl shadow">{`Hello ${session.user?.name?.toUpperCase()}`}</li>}
+          {session && <Link href={"/account"} className="rounded-3xl bg-[#F45867] px-4 text-xl shadow" onClick={() => setOpen(false)}>{`${session.user?.name?.toUpperCase()}`}</Link>}
           {session ? (
             <li
               onClick={() => {
                 signOut();
               }}
-              className="mb-2 cursor-pointer rounded-3xl bg-[#F45867] px-2 text-xl shadow md:mb-0"
+              className="mb-2 cursor-pointer rounded-3xl bg-[#F45867] px-4 text-xl shadow md:mb-0"
             >
               Logout
             </li>

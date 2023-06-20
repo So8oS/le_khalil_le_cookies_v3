@@ -2,7 +2,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import ordersHook from "../../lib/orderHook";
+import OrdersHook from "../../lib/orderHook";
 import { mutate } from "swr";
 import { GiCook } from "react-icons/gi";
 import { FcCancel } from "react-icons/fc";
@@ -25,7 +25,7 @@ interface order {
 
 const OrderList = () => {
   const { register, handleSubmit, control, reset } = useForm();
-  const { data: Orders } = ordersHook();
+  const { data: Orders } = OrdersHook();
   const [updating, setUpdating] = useState(false);
   const [selectedOrderId, setSelectedOrderId] = useState(null);
 

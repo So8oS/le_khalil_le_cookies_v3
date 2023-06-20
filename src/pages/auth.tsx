@@ -3,11 +3,28 @@ import React, { useState, useCallback } from "react";
 import { MdEmail } from "react-icons/md";
 import { AiFillLock, AiOutlineUser } from "react-icons/ai";
 import { AiOutlineGoogle } from "react-icons/ai";
-import { signIn } from "next-auth/react";
+import { getSession, signIn } from "next-auth/react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
+import { NextPageContext } from "next";
 
+export async function getServerSideProps(context: NextPageContext) {
+  const session = await getSession(context);
+
+  if (session) {
+    return {
+      redirect: {
+        destination: "/account",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+}
 interface user {
   email: string;
   bio: string;
