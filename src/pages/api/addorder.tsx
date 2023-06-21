@@ -2,8 +2,12 @@ import { NextApiRequest, NextApiResponse } from "next";
 import prismadb from "../../../lib/prismadb";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./auth/[...nextauth]";
+import serverAuth from "../../../lib/serverAuth";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   console.log("Order api hit");
 
   try {
@@ -11,6 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(405).end();
     }
 
+    // @ts-ignore
     const session = await getServerSession(req, res, authOptions);
     const { items, total } = req.body;
 

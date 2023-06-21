@@ -1,20 +1,14 @@
 import React, { useState } from "react";
 import { useAtom } from "jotai";
-import { cartAtom } from "../atoms";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { ICartItem, cartAtom } from "../atoms";
+import { toast } from "react-toastify";
 
-interface details {
-  pic: string;
-  name: string;
-  disc: string;
-  price: string;
-  cookie: any;
-}
-
-const Card = ({ pic, name, disc, price, cookie }: details) => {
+const Card = ({ pic, name, disc, price, cookie }: ICartItem) => {
   const [items, setItems] = useAtom(cartAtom);
-  const notify = () => toast("Item Added To Cart");
+  const notify = () =>
+    toast.success("Item Added To Cart", {
+      toastId: "itemAdded",
+    });
 
   const handleAddToCart = () => {
     // Check if the item is already in the cart
@@ -34,6 +28,7 @@ const Card = ({ pic, name, disc, price, cookie }: details) => {
 
   return (
     <div className="flex max-w-[22rem] flex-col items-center overflow-hidden rounded-3xl bg-[#EBCC9B] shadow md:transition-all md:duration-100 md:ease-in-out md:hover:scale-105">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img className="w-[22rem]" src={pic} alt="dessert pic" />
       <div className="mt-16 flex flex-col items-center justify-center px-5">
         <h2 className="h-20 font-Pacifico text-2xl font-bold">{name}</h2>
@@ -42,10 +37,12 @@ const Card = ({ pic, name, disc, price, cookie }: details) => {
         <div className="mt-10 flex flex-col items-center justify-center gap-3">
           <h3 className="text-lg font-bold">{`${price} TL`}</h3>
 
-          <button className="relative mb-10 cursor-pointer rounded-3xl bg-[#F45867] px-4 py-2 text-xl text-white" onClick={handleAddToCart}>
+          <button
+            className="relative mb-10 cursor-pointer rounded-3xl bg-[#F45867] px-4 py-2 text-xl text-white"
+            onClick={handleAddToCart}
+          >
             Add to cart
           </button>
-          <ToastContainer position="top-center" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored" />
         </div>
       </div>
     </div>

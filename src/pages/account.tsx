@@ -3,7 +3,7 @@ import React from "react";
 
 const Account = () => {
   return (
-    <div className="min-h-screen px-5">
+    <div className="px-5">
       <Details />
     </div>
   );

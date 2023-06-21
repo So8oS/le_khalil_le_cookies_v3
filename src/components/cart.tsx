@@ -10,18 +10,21 @@ const Cart = () => {
   const [cartOpen, setCartOpen] = useAtom(cartOpenAtom);
 
   return (
-    <div className="  p-4 md:top-[3.25rem] md:right-1 top-60 shadow fixed md:absolute bg-[#EEE5E5] overflow-hidden border border-black rounded-xl  ">
+    <div className="fixed top-60 overflow-hidden rounded-xl border border-black bg-[#EEE5E5] p-4 shadow md:absolute md:right-1 md:top-[3.25rem]  ">
       <div className="flex flex-col justify-center ">
         {items.length === 0 ? (
-          <div className="flex flex-col justify-center items-center">
+          <div className="flex flex-col items-center justify-center">
             <h1 className="text-center text-xl">Cart is empty</h1>
-            <button onClick={() => setCartOpen(false)} className="bg-[#F45867] text-white  py-2 px-4 rounded-3xl cursor-pointer mt-4">
+            <button
+              onClick={() => setCartOpen(false)}
+              className="mt-4 cursor-pointer  rounded-3xl bg-[#F45867] px-4 py-2 text-white"
+            >
               Close
             </button>
           </div>
         ) : (
           <>
-            <div className="flex justify-between items-center">
+            <div className="flex items-center justify-between">
               <h1 className="text-2xl font-semibold">Cart</h1>
               <button
                 className="md:hidden"
@@ -29,18 +32,25 @@ const Cart = () => {
                   setCartOpen(!cartOpen);
                 }}
               >
-                <TiDelete className="text-red-500 w-6 h-6 " />
+                <TiDelete className="h-6 w-6 text-red-500 " />
               </button>
             </div>
-            <div className="flex flex-col gap-2 mt-4 ">
+            <div className="mt-4 flex flex-col gap-2 ">
               {items.map((item, idx) => {
                 return (
-                  <div key={idx} className="flex justify-between items-center bg-[#EBCC9B] rounded-lg shadow-lg gap-3 p-2 shadow ">
-                    <div className="flex gap-2 items-center">
-                      <img src={item.pic} alt={item.name} className="w-20 shadow rounded-lg" />
+                  <div
+                    key={idx}
+                    className="flex items-center justify-between gap-3 rounded-lg bg-[#EBCC9B] p-2 shadow shadow-lg "
+                  >
+                    <div className="flex items-center gap-2">
+                      <img
+                        src={item.pic}
+                        alt={item.name}
+                        className="w-20 rounded-lg shadow"
+                      />
                       <h1 className="w-28">{item.name}</h1>
                     </div>
-                    <div className="flex justify-center items-center">
+                    <div className="flex items-center justify-center">
                       <h1 className="">{`${item.price}`}</h1>
                       <h1>TL</h1>
                     </div>
@@ -61,7 +71,7 @@ const Cart = () => {
               onClick={() => {
                 setCartOpen(!cartOpen);
               }}
-              className="text-center bg-[#F45867] text-white  py-2 px-4 rounded-3xl cursor-pointer mt-4"
+              className="mt-4 cursor-pointer rounded-3xl  bg-[#F45867] px-4 py-2 text-center text-white"
             >
               Go to checkout
             </Link>

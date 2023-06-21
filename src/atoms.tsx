@@ -1,15 +1,17 @@
 import { atom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 
-interface details {
+export interface ICartItem {
   pic: string;
   name: string;
   disc: string;
-  price: string;
+  price: number;
   cookie: any;
+  quantity: number;
+  id?: number;
 }
 
-export const cartAtom = atomWithStorage("cart", []);
+export const cartAtom = atomWithStorage<ICartItem[]>("cart", []);
 
 export const cartOpenAtom = atom(false);
 
