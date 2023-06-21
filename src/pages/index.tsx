@@ -1,23 +1,24 @@
+import { useAtom } from "jotai";
 import Card from "../components/Card";
-import { cookies } from "@/data/cookies";
+import { cartAtom } from "@/atoms";
 
 export default function Home() {
+  const [items, setItems] = useAtom(cartAtom);
   return (
     <div
-      className="mt-14 flex flex-col items-center justify-center px-5
-      md:mt-20
+      className="mt-12 flex flex-col items-center justify-center px-5
+      md:mt-12
     "
     >
       <div className="flex flex-wrap items-center justify-center gap-36">
-        {cookies.map((cookie) => (
+        {items.map((item) => (
           <Card
-            key={cookie.id}
-            pic={cookie.pic}
-            name={cookie.name}
-            disc={cookie.disc}
-            price={cookie.price}
-            cookie={cookie}
-            quantity={0}
+            key={item.id}
+            pic={item.pic}
+            name={item.name}
+            disc={item.disc}
+            price={item.price}
+            quantity={item.quantity}
           />
         ))}
       </div>

@@ -12,8 +12,13 @@ const CheckOut = () => {
   const [items, setItems] = useAtom(cartAtom);
   const notify = () => toast("Order Sent");
 
-  const itemsWithoutId = items.map(({ id, ...rest }) => rest);
-  console.log(itemsWithoutId);
+  const itemsWithoutId = items
+    .map((item) => {
+      // return only items with quantity > 0
+      const { id, ...rest } = item;
+      return rest.quantity > 0 ? rest : null;
+    })
+    .filter((item) => item !== null);
 
   // Calculate the total price of all items
   const total = items.reduce((acc, item) => {
@@ -27,13 +32,14 @@ const CheckOut = () => {
       total,
     });
     notify();
-    setItems([]);
+    // set the quantity of all items to 0
+    setItems((prev) => prev.map((item) => ({ ...item, quantity: 0 })));
   };
 
   return (
     <div className="w-full max-w-[65rem] rounded-xl border border-black bg-[#EEE5E5] p-4 shadow">
       <div className="flex flex-col justify-center">
-        {items.length === 0 ? (
+        {items.every((item) => item.quantity === 0) ? (
           <div className="flex flex-col items-center justify-center">
             <h1 className="text-center text-xl">No Items Were Added</h1>
           </div>
@@ -45,6 +51,7 @@ const CheckOut = () => {
             </div>
             <div className="mt-4 flex flex-col gap-4">
               {items.map((item, idx) => {
+                if (item.quantity === 0) return null;
                 const totalPrice = item.quantity * item.price;
                 return (
                   <div

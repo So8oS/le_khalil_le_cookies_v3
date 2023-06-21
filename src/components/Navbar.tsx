@@ -11,8 +11,8 @@ const Navbar = () => {
   const [open, setOpen] = useAtom(navOpenAtom);
   const [cartOpen, setCartOpen] = useAtom(cartOpenAtom);
   return (
-    <div className="bg-[#eee5e5]  px-2 shadow">
-      <div className="flex h-12 items-center justify-between md:p-1   ">
+    <div className="relative bg-[#eee5e5]  px-2 shadow">
+      <div className=" flex h-12 items-center justify-between md:p-1   ">
         <div
           className="flex cursor-pointer items-center justify-center gap-2"
           onClick={() => {
@@ -29,7 +29,7 @@ const Navbar = () => {
           className={
             !open
               ? " hidden items-center justify-center gap-3 text-xl md:flex"
-              : "absolute  mt-[14.2rem] flex w-full flex-col items-center justify-center gap-5  bg-[#eee5e5]  md:static md:mt-0 md:w-fit md:flex-row md:items-center  md:justify-between md:gap-4 md:bg-transparent md:text-base"
+              : "absolute right-0 top-12 flex w-full flex-col items-center justify-center gap-y-5  bg-[#eee5e5]  md:static md:mt-0 md:w-fit md:flex-row md:items-center  md:justify-between md:gap-4 md:bg-transparent md:text-base"
           }
         >
           <Link
@@ -67,7 +67,9 @@ const Navbar = () => {
               Logout
             </li>
           ) : (
-            <Link href="/auth">Sign In</Link>
+            <Link onClick={() => setOpen(false)} href="/auth">
+              Sign In
+            </Link>
           )}
         </ul>
         <img
