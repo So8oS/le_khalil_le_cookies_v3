@@ -26,11 +26,11 @@ const OrdersPage = () => {
   return (
     <>
       {user?.role === "ADMIN" ? (
-        <div className="min-h-screen px-4">
+        <div className="px-4">
           <OrderList />
         </div>
       ) : (
-        <div className="min-h-screen px-4">nothing to see here</div>
+        <div className="px-4">nothing to see here</div>
       )}
     </>
   );

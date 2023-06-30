@@ -3,10 +3,16 @@ import React from "react";
 
 const WhoAreWe = () => {
   return (
-    <div className="flex min-h-screen  items-center justify-center px-5">
+    <div className="flex items-center justify-center px-5 md:pt-20">
       <div className="mt-10 flex max-w-[70rem] flex-col items-center justify-center gap-5 rounded-3xl bg-[#EBCC9B] p-10 shadow">
-        <img src="/khalilpic.jpg" alt="Khalil" className=" w-96 rounded-lg shadow" />
-        <h1 className="rounded-xl bg-[#F45867] p-4 font-Pacifico text-3xl shadow">Khalil Selyan</h1>
+        <img
+          src="/khalilpic.jpg"
+          alt="Khalil"
+          className=" w-96 rounded-lg shadow"
+        />
+        <h1 className="rounded-xl bg-[#F45867] p-4 font-Pacifico text-3xl shadow">
+          Khalil Selyan
+        </h1>
         <div className="flex flex-col items-center justify-center gap-2 text-center">
           <p className="text-center text-xl font-medium md:text-2xl">
             {/* Let me tell you about my friend, the cookie lover turned entrepreneur. He has a thicc booty and an insatiable appetite for cookies. In his third year of uni, he started selling his

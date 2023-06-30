@@ -3,7 +3,7 @@ import React from "react";
 
 const Outpage = () => {
   return (
-    <div className="min-h-screen px-5 flex flex-col justify-center items-center">
+    <div className="flex flex-col items-center justify-center px-5 pt-12 md:pt-20">
       <CheckOut />
     </div>
   );

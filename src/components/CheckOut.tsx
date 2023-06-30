@@ -6,16 +6,19 @@ import { TiDelete } from "react-icons/ti";
 import { AiFillMinusCircle } from "react-icons/ai";
 import { AiFillPlusCircle } from "react-icons/ai";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const CheckOut = () => {
   const [items, setItems] = useAtom(cartAtom);
-  const [cartOpen, setCartOpen] = useAtom(cartOpenAtom);
   const notify = () => toast("Order Sent");
 
-  const itemsWithoutId = items.map(({ id, ...rest }) => rest);
-  console.log(itemsWithoutId);
+  const itemsWithoutId = items
+    .map((item) => {
+      // return only items with quantity > 0
+      const { id, ...rest } = item;
+      return rest.quantity > 0 ? rest : null;
+    })
+    .filter((item) => item !== null);
 
   // Calculate the total price of all items
   const total = items.reduce((acc, item) => {
@@ -29,13 +32,14 @@ const CheckOut = () => {
       total,
     });
     notify();
-    setItems([]);
+    // set the quantity of all items to 0
+    setItems((prev) => prev.map((item) => ({ ...item, quantity: 0 })));
   };
 
   return (
     <div className="w-full max-w-[65rem] rounded-xl border border-black bg-[#EEE5E5] p-4 shadow">
       <div className="flex flex-col justify-center">
-        {items.length === 0 ? (
+        {items.every((item) => item.quantity === 0) ? (
           <div className="flex flex-col items-center justify-center">
             <h1 className="text-center text-xl">No Items Were Added</h1>
           </div>
@@ -45,13 +49,21 @@ const CheckOut = () => {
               <img className="w-20" src="/logo.png" alt="logo" />
               <h1 className="text-center text-3xl font-semibold">Checkout</h1>
             </div>
-            <div className="mt-4 flex flex-col gap-2">
+            <div className="mt-4 flex flex-col gap-4">
               {items.map((item, idx) => {
+                if (item.quantity === 0) return null;
                 const totalPrice = item.quantity * item.price;
                 return (
-                  <div key={idx} className="flex flex-col items-center justify-between gap-3 rounded-lg bg-[#EBCC9B] p-2 text-xl shadow  sm:flex-row md:hover:scale-105">
+                  <div
+                    key={idx}
+                    className="flex flex-col items-center justify-between gap-3 rounded-lg bg-[#EBCC9B] p-2 text-xl shadow  sm:flex-row md:hover:scale-105"
+                  >
                     <div className="flex flex-col items-center justify-center gap-2 text-center sm:flex-row">
-                      <img src={item.pic} alt={item.name} className="w-40 rounded-lg shadow md:w-32" />
+                      <img
+                        src={item.pic}
+                        alt={item.name}
+                        className="w-40 rounded-lg shadow md:w-32"
+                      />
                       <h1 className="w-28">{item.name}</h1>
                     </div>
                     <div className="flex gap-5">
@@ -91,10 +103,12 @@ const CheckOut = () => {
             </div>
           </>
         )}
-        <button onClick={sendOrder} className="mt-4 cursor-pointer rounded-3xl  bg-[#F45867] px-4 py-2 text-center text-white">
+        <button
+          onClick={sendOrder}
+          className="mt-4 cursor-pointer rounded-3xl  bg-[#F45867] px-4 py-2 text-center text-white"
+        >
           Order
         </button>{" "}
-        <ToastContainer position="top-center" autoClose={2000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="colored" />
       </div>
     </div>
   );
