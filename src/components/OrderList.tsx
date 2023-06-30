@@ -23,13 +23,18 @@ interface order {
   }[];
 }
 
+interface data {
+  status: string;
+  date: string;
+}
+
 const OrderList = () => {
   const { register, handleSubmit, control, reset } = useForm();
   const { data: Orders } = OrdersHook();
   const [updating, setUpdating] = useState(false);
   const [selectedOrderId, setSelectedOrderId] = useState(null);
 
-  const updateOrder = async (data) => {
+  const updateOrder = async (data: data) => {
     try {
       setUpdating(false);
       console.log(data);
@@ -67,6 +72,7 @@ const OrderList = () => {
             <h1 className="">{`Status: ${order.status}`}</h1>
             {updating && selectedOrderId === order.id ? (
               <>
+                {/* @ts-ignore */}
                 <form onSubmit={handleSubmit(updateOrder)} className="items flex flex-col items-center justify-center gap-3 ">
                   <div className="items center flex justify-center gap-2">
                     <div className="items flex flex-col items-center justify-center gap-1">
@@ -96,6 +102,7 @@ const OrderList = () => {
                 className="cursor-pointer rounded-3xl bg-[#F45867] px-2 py-1 text-white shadow"
                 onClick={() => {
                   setUpdating(true);
+                  //@ts-ignore
                   setSelectedOrderId(order.id);
                 }}
               >

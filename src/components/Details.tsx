@@ -5,6 +5,21 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { mutate } from "swr";
 
+interface order {
+  id: string;
+  status: string;
+  date: string;
+  total: number;
+  user: {
+    name: string;
+    email: string;
+  };
+  items: {
+    name: string;
+    quantity: number;
+  }[];
+}
+
 const Details = () => {
   const { data: user } = useCurrentUser();
   // const [orders, setOrders] = React.useState<any>(user?.orders?.map((order) => order));
@@ -12,7 +27,7 @@ const Details = () => {
   const [canceling, setCancel] = React.useState(false);
   const [selectedOrderId, setSelectedOrderId] = useState(null);
 
-  const cancelOrder = async (orderId) => {
+  const cancelOrder = async (orderId: string) => {
     console.log(orderId);
 
     try {
@@ -31,7 +46,7 @@ const Details = () => {
         <h1 className="text-3xl ">My Orders</h1>
         <div className="flex flex-wrap  justify-center gap-5  ">
           {user?.orders
-            ?.map((order) => {
+            ?.map((order: order) => {
               return (
                 <div key={order.id} className=" flex flex-col justify-center  rounded-3xl bg-[#EEE5E5] p-7 shadow hover:scale-105">
                   <div className="flex h-24 flex-col">
@@ -83,6 +98,7 @@ const Details = () => {
                     <button
                       className="mt-2 rounded-lg bg-[#F45867]   text-white"
                       onClick={() => {
+                        //@ts-ignore
                         setSelectedOrderId(order.id);
                         setCancel(true);
                       }}
