@@ -71,15 +71,15 @@ const OrderList = () => {
                   <div className="items center flex justify-center gap-2">
                     <div className="items flex flex-col items-center justify-center gap-1">
                       <IoIosCheckmarkCircle className="text-green-500" />
-                      <input {...register("status")} type="radio" value={"Delivered"} name="status" />
+                      <input {...register("status")} type="radio" value={"delivered"} name="status" />
                     </div>
                     <div className="items flex flex-col items-center justify-center gap-1">
                       <GiCook className="" />
-                      <input {...register("status")} type="radio" value={"Preparing"} name="status" />
+                      <input {...register("status")} type="radio" value={"preparing"} name="status" />
                     </div>
                     <div className="items flex flex-col items-center justify-center gap-1">
                       <FcCancel className="" />
-                      <input {...register("status")} type="radio" value={"Canceled"} name="status" />
+                      <input {...register("status")} type="radio" value={"canceled"} name="status" />
                     </div>
                   </div>
                   <Controller control={control} name="date" render={({ field }) => <input type="date" {...field} className="rounded-3xl px-2 py-1" />} />
@@ -104,7 +104,7 @@ const OrderList = () => {
             )}
             {<h1>{`delivery date: ${order.date}`}</h1>}
           </div>
-        ))}
+        )).reverse()}
       </div>
     </div>
   );

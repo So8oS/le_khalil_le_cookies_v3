@@ -41,9 +41,7 @@ const Auth = () => {
   } = useForm();
 
   const toggleVarient = useCallback(() => {
-    setVarient((currentVarient) =>
-      currentVarient === "login" ? "register" : "login"
-    );
+    setVarient((currentVarient) => (currentVarient === "login" ? "register" : "login"));
   }, []);
 
   const login = useCallback(
@@ -56,10 +54,13 @@ const Auth = () => {
           callbackUrl: "/",
           redirect: false,
         });
-        router.push("/");
+        // router.push("/");
 
         if (response?.error) {
           setError(response.error);
+        }
+        if (!response?.error) {
+          router.push("/");
         }
       } catch (error) {
         console.log(error);
@@ -95,9 +96,7 @@ const Auth = () => {
       <div className="flex w-full max-w-[30rem] flex-col items-center justify-center rounded-3xl bg-[#EBCC9B] py-14 shadow  ">
         <div className="flex items-center justify-center gap-2">
           <img className="w-24" src="/logo.png" alt="logo" />
-          <h1 className="font-Pacifico text-[2.5rem] font-bold">
-            {varient === "login" ? "Sign In" : "Register"}
-          </h1>
+          <h1 className="font-Pacifico text-[2.5rem] font-bold">{varient === "login" ? "Sign In" : "Register"}</h1>
         </div>
         {/* Form */}
         {error && <p className="animate-pulse text-red-500">{error}</p>}
@@ -114,22 +113,12 @@ const Auth = () => {
             {varient === "register" && (
               <div className="flex h-16 w-full  flex-row items-center  gap-2 rounded-xl border  bg-white pl-2 text-xl shadow outline-none ">
                 <AiOutlineUser className="w-5 text-[#828282]" />
-                <input
-                  className="w-full outline-none "
-                  {...register("name")}
-                  type="text"
-                  placeholder="Name"
-                />
+                <input className="w-full outline-none " {...register("name")} type="text" placeholder="Name" />
               </div>
             )}
             <div className="flex h-16 w-full  flex-row items-center  gap-2 rounded-xl border  bg-white pl-2 text-xl shadow outline-none ">
               <MdEmail className="w-5 text-[#828282]" />
-              <input
-                className="w-full  outline-none "
-                {...register("email", { required: "Email is required" })}
-                type="email"
-                placeholder="Email"
-              />
+              <input className="w-full  outline-none " {...register("email", { required: "Email is required" })} type="email" placeholder="Email" />
             </div>
             {/*@ts-ignore */}
             {errors.email && (
@@ -140,12 +129,7 @@ const Auth = () => {
             )}
             <div className="flex h-16 w-full flex-row items-center gap-2  rounded-xl border bg-white  pl-2 text-xl shadow outline-none sm:min-w-[17rem] ">
               <AiFillLock className="w-5 text-[#828282]" />
-              <input
-                className="w-full  outline-none"
-                {...register("password", { required: "Password is required" })}
-                type="password"
-                placeholder="Password"
-              />
+              <input className="w-full  outline-none" {...register("password", { required: "Password is required" })} type="password" placeholder="Password" />
             </div>
             {/*@ts-ignore */}
             {errors.password && (
@@ -154,10 +138,7 @@ const Auth = () => {
                 {errors.password.message}
               </p>
             )}
-            <button
-              className="text h-9 w-full rounded-3xl bg-[#F45867] text-white shadow "
-              type="submit"
-            >
+            <button className="text h-9 w-full rounded-3xl bg-[#F45867] text-white shadow " type="submit">
               {varient === "login" ? "Sign In" : "Register"}
             </button>
           </div>
