@@ -57,6 +57,7 @@ const OrderList = () => {
     <div className="mt-10 flex flex-col items-center justify-center rounded-3xl bg-[#EEE5E5] p-5 shadow">
       <h1 className="text-3xl font-bold">Orders</h1>
       <div className="mt-5 flex flex-wrap items-center justify-center gap-10">
+        {/* @ts-ignore */}
         {Orders?.map((order, idx: number) => (
           <div key={idx} className="flex flex-col items-center gap-2 rounded-3xl bg-[#EBCC9B] p-5 shadow hover:scale-105">
             <div className="flex items-center justify-center gap-2">
@@ -65,6 +66,7 @@ const OrderList = () => {
             </div>
             <h1 className="text-xl font-bold">{order?.user?.email.toUpperCase()}</h1>
             <div className="flex h-24 flex-col">
+              {/* @ts-ignore */}
               {order.items.map((item, idx) => (
                 <div key={idx} className="flex justify-between gap-3">
                   <h1 className="text-lg">{item.name}</h1>
