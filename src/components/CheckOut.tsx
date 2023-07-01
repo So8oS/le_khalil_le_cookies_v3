@@ -7,10 +7,12 @@ import { AiFillMinusCircle } from "react-icons/ai";
 import { AiFillPlusCircle } from "react-icons/ai";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 const CheckOut = () => {
   const [items, setItems] = useAtom(cartAtom);
   const notify = () => toast("Order Sent");
+  const router = useRouter();
 
   const itemsWithoutId = items
     .map((item) => {
@@ -34,6 +36,7 @@ const CheckOut = () => {
     notify();
     // set the quantity of all items to 0
     setItems((prev) => prev.map((item) => ({ ...item, quantity: 0 })));
+    router.push("/");
   };
 
   return (
@@ -54,16 +57,9 @@ const CheckOut = () => {
                 if (item.quantity === 0) return null;
                 const totalPrice = item.quantity * item.price;
                 return (
-                  <div
-                    key={idx}
-                    className="flex flex-col items-center justify-between gap-3 rounded-lg bg-[#EBCC9B] p-2 text-xl shadow  sm:flex-row md:hover:scale-105"
-                  >
+                  <div key={idx} className="flex flex-col items-center justify-between gap-3 rounded-lg bg-[#EBCC9B] p-2 text-xl shadow  sm:flex-row md:hover:scale-105">
                     <div className="flex flex-col items-center justify-center gap-2 text-center sm:flex-row">
-                      <img
-                        src={item.pic}
-                        alt={item.name}
-                        className="w-40 rounded-lg shadow md:w-32"
-                      />
+                      <img src={item.pic} alt={item.name} className="w-40 rounded-lg shadow md:w-32" />
                       <h1 className="w-28">{item.name}</h1>
                     </div>
                     <div className="flex gap-5">
@@ -103,10 +99,7 @@ const CheckOut = () => {
             </div>
           </>
         )}
-        <button
-          onClick={sendOrder}
-          className="mt-4 cursor-pointer rounded-3xl  bg-[#F45867] px-4 py-2 text-center text-white"
-        >
+        <button onClick={sendOrder} className="mt-4 cursor-pointer rounded-3xl  bg-[#F45867] px-4 py-2 text-center text-white">
           Order
         </button>{" "}
       </div>

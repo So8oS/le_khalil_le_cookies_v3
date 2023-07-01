@@ -8,20 +8,20 @@ import { GiCook } from "react-icons/gi";
 import { FcCancel } from "react-icons/fc";
 import { IoIosCheckmarkCircle } from "react-icons/io";
 
-interface order {
-  id: number;
-  status: string;
-  date: string;
-  total: number;
-  user: {
-    name: string;
-    email: string;
-  };
-  items: {
-    name: string;
-    quantity: number;
-  }[];
-}
+// interface order {
+//   id: number;
+//   status: string;
+//   date: string;
+//   total: number;
+//   user: {
+//     name: string;
+//     email: string;
+//   };
+//   items: {
+//     name: string;
+//     quantity: number;
+//   }[];
+// }
 
 interface data {
   status: string;
@@ -53,7 +53,7 @@ const OrderList = () => {
     <div className="mt-10 flex flex-col items-center justify-center rounded-3xl bg-[#EEE5E5] p-5 shadow">
       <h1 className="text-3xl font-bold">Orders</h1>
       <div className="mt-5 flex flex-wrap items-center justify-center gap-10">
-        {Orders?.map((order: order, idx: number) => (
+        {Orders?.map((order, idx: number) => (
           <div key={idx} className="flex flex-col items-center gap-2 rounded-3xl bg-[#EBCC9B] p-5 shadow hover:scale-105">
             <div className="flex items-center justify-center gap-2">
               <img className="w-10" src="/customer.png" alt="customer" />

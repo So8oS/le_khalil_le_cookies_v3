@@ -91,7 +91,7 @@ const Auth = () => {
 
   return (
     // Page
-    <div className="flex flex-col items-center justify-center p-5 ">
+    <div className="flex min-h-screen flex-col items-center justify-center ">
       {/* Component */}
       <div className="flex w-full max-w-[30rem] flex-col items-center justify-center rounded-3xl bg-[#EBCC9B] py-14 shadow  ">
         <div className="flex items-center justify-center gap-2">
@@ -144,7 +144,7 @@ const Auth = () => {
           </div>
         </form>
         <div className="mt-5 flex flex-col items-center justify-center gap-4">
-          <p className="text-lg">or continue with</p>
+          {/* <p className="text-lg">or continue with</p>
           <div className="flex gap-5">
             <div
               className=" flex cursor-pointer items-center justify-center  rounded-full border border-[#828282] p-2"
@@ -156,7 +156,7 @@ const Auth = () => {
             >
               <AiOutlineGoogle className="text-[#828282]" />
             </div>
-          </div>
+          </div> */}
           <span>
             {" "}
             {varient === "login" ? "Not a member? " : "Already a member? "}
