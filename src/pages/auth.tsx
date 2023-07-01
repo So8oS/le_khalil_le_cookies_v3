@@ -78,6 +78,8 @@ const Auth = () => {
           email: email,
           password: password,
         });
+        console.log(name, email);
+        axios.post("/api/send", { name: name, email: email });
 
         console.log("success");
         login(data);

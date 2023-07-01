@@ -18,6 +18,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "lib/useCurrentUser.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "lib/useCurrentUser.tsx", "src/pages/api/send.ts"],
   "exclude": ["node_modules"]
 }
