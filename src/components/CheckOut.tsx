@@ -36,6 +36,8 @@ const CheckOut = () => {
     notify();
     // set the quantity of all items to 0
     setItems((prev) => prev.map((item) => ({ ...item, quantity: 0 })));
+    axios.post("/api/orderRecieved");
+
     router.push("/");
   };
 

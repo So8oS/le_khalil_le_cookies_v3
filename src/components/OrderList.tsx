@@ -33,6 +33,7 @@ const OrderList = () => {
   const { data: Orders } = OrdersHook();
   const [updating, setUpdating] = useState(false);
   const [selectedOrderId, setSelectedOrderId] = useState(null);
+  const [selectedEmail, setSelectedEmail] = useState(null);
 
   const updateOrder = async (data: data) => {
     try {
@@ -43,7 +44,10 @@ const OrderList = () => {
       await axios.post(`/api/updateOrder`, { updatedId: selectedOrderId, status, date });
       mutate("/api/getorders");
       reset(); // Reset the form after successful update
+      axios.post("/api/orderStatus", { status: status, email: selectedEmail });
+
       setSelectedOrderId(null); // Reset the selectedOrderId
+      setSelectedEmail(null); // Reset the selectedEmail
     } catch (err) {
       console.log(err);
     }
@@ -104,6 +108,7 @@ const OrderList = () => {
                   setUpdating(true);
                   //@ts-ignore
                   setSelectedOrderId(order.id);
+                  setSelectedEmail(order.user.email);
                 }}
               >
                 Update
