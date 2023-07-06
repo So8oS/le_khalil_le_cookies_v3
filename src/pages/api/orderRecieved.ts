@@ -9,6 +9,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   console.log("yo");
+  // @ts-ignore
 
   const session = await getServerSession(req, res, authOptions);
   const email = session?.user?.email;
@@ -19,6 +20,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       //@ts-ignore
       to: email,
       subject: "order recieved",
+      // @ts-ignore
+
       react: Recieved({ email }),
     });
 
