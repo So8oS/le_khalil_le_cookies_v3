@@ -44,7 +44,7 @@ const OrderList = () => {
       await axios.post(`/api/updateOrder`, { updatedId: selectedOrderId, status, date });
       mutate("/api/getorders");
       reset(); // Reset the form after successful update
-      axios.post("/api/orderStatus", { status: status, email: selectedEmail });
+      axios.post("/api/email/orderStatus", { status: status, email: selectedEmail });
 
       setSelectedOrderId(null); // Reset the selectedOrderId
       setSelectedEmail(null); // Reset the selectedEmail

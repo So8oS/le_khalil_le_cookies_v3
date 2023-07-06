@@ -25,10 +25,6 @@ export async function getServerSideProps(context: NextPageContext) {
     props: {},
   };
 }
-interface user {
-  email: string;
-  bio: string;
-}
 
 const Auth = () => {
   const [varient, setVarient] = React.useState("login");
@@ -54,7 +50,6 @@ const Auth = () => {
           callbackUrl: "/",
           redirect: false,
         });
-        // router.push("/");
 
         if (response?.error) {
           setError(response.error);
@@ -79,13 +74,13 @@ const Auth = () => {
           password: password,
         });
         console.log(name, email);
-        axios.post("/api/send", { name: name, email: email });
+        axios.post("/api/email/send", { name: name, email: email.toLowerCase() });
 
         console.log("success");
         login(data);
       } catch (err: any) {
         console.log("error", err.response.data.error);
-        setError(err.response.data.error); // Set the error message received from the backend
+        setError(err.response.data.error);
       }
     },
     [login]

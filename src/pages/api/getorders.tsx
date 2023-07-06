@@ -1,7 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prismadb from "../../../lib/prismadb";
-import { getServerSession } from "next-auth";
-import { authOptions } from "./auth/[...nextauth]";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   console.log("Order api hit");

@@ -11,7 +11,9 @@ import { useRouter } from "next/router";
 
 const CheckOut = () => {
   const [items, setItems] = useAtom(cartAtom);
+  const [error, setError] = React.useState();
   const notify = () => toast("Order Sent");
+  const erorrnot = () => toast(error);
   const router = useRouter();
 
   const itemsWithoutId = items
@@ -29,16 +31,21 @@ const CheckOut = () => {
   }, 0);
 
   const sendOrder = async () => {
-    await axios.post("/api/addorder", {
-      items: itemsWithoutId,
-      total,
-    });
-    notify();
-    // set the quantity of all items to 0
-    setItems((prev) => prev.map((item) => ({ ...item, quantity: 0 })));
-    axios.post("/api/orderRecieved");
+    try {
+      await axios.post("/api/addorder", {
+        items: itemsWithoutId,
+        total,
+      });
+      notify();
+      // set the quantity of all items to 0
+      setItems((prev) => prev.map((item) => ({ ...item, quantity: 0 })));
+      axios.post("/api/email/orderRecieved");
 
-    router.push("/");
+      router.push("/");
+    } catch (error: string | any) {
+      setError(error.response.data.error);
+      erorrnot();
+    }
   };
 
   return (
