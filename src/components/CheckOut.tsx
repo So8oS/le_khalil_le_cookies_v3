@@ -43,7 +43,7 @@ const CheckOut = () => {
 
       router.push("/");
     } catch (error: string | any) {
-      await setError(error.response.data.error);
+      setError(error.response.data.error);
       erorrnot();
     }
   };
