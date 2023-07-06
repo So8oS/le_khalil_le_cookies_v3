@@ -4,34 +4,28 @@ import React from "react";
 import { NextPageContext } from "next";
 import useCurrentUser from "../../lib/useCurrentUser";
 
-export async function getServerSideProps(context: NextPageContext) {
-  const session = await getSession(context);
+// export async function getServerSideProps(context: NextPageContext) {
+//   const session = await getSession(context);
 
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
+//   if (!session) {
+//     return {
+//       redirect: {
+//         destination: "/",
+//         permanent: false,
+//       },
+//     };
+//   }
 
-  return {
-    props: {},
-  };
-}
+//   return {
+//     props: {},
+//   };
+// }
 
 const OrdersPage = () => {
-  const { data: user } = useCurrentUser();
+  // const { data: user } = useCurrentUser();
   return (
     <>
-      {user?.role === "ADMIN" ? (
-        <div className="px-4">
-          <OrderList />
-        </div>
-      ) : (
-        <div className="px-4">nothing to see here</div>
-      )}
+      <OrderList />
     </>
   );
 };
