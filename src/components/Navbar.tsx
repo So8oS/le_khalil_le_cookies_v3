@@ -62,7 +62,7 @@ const Navbar = () => {
               Logout
             </li>
           ) : (
-            <Link onClick={() => setOpen(false)} href="/auth">
+            <Link className="cursor-pointer text-xl" onClick={() => setOpen(false)} href="/auth">
               Sign In
             </Link>
           )}

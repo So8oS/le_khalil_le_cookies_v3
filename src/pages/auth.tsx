@@ -88,7 +88,7 @@ const Auth = () => {
 
   return (
     // Page
-    <div className="flex min-h-screen flex-col items-center justify-center ">
+    <div className="flex min-h-screen flex-col items-center justify-center px-4 ">
       {/* Component */}
       <div className="flex w-full max-w-[30rem] flex-col items-center justify-center rounded-3xl bg-[#EBCC9B] py-14 shadow  ">
         <div className="flex items-center justify-center gap-2">

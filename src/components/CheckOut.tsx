@@ -94,7 +94,12 @@ const CheckOut = () => {
                     </div>
                     <button
                       onClick={() => {
-                        setItems((prev) => prev.filter((_, i) => i !== idx));
+                        // make quantity 0
+                        setItems((prev) => {
+                          const updatedItems = [...prev];
+                          updatedItems[idx].quantity = 0;
+                          return updatedItems;
+                        });
                       }}
                     >
                       <TiDelete className="h-7 w-7 text-[#F45867]  " />
