@@ -1,68 +1,43 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mongodb"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-
-
 model User {
-  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  id             String     @id @default(uuid())
   name           String?
-  email          String?   @unique
+  email          String?    @unique
   emailVerified  DateTime?
   hashedPassword String?
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-  accounts       Account[]
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
   orders         Order[]
-  role      String   @default("user")
+  role           String     @default("user")
 }
-
-model Account {
-  id                String  @id @default(auto()) @map("_id") @db.ObjectId
-  userId            String  @db.ObjectId
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String? @db.String
-  access_token      String? @db.String
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String? @db.String
-  session_state     String?
-  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([provider, providerAccountId])
-}
-
 
 model Order {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  id        String   @id @default(uuid())
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   items     Item[]
   total     Float
   status    String   @default("pending")
   date      String?  @default("Not set")
-  userId    String   @db.ObjectId
+  userId    String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Item {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  id        String   @id @default(uuid())
   name      String
-  disc     String
+  disc      String
   price     Float
-  pic    String
+  pic       String
   quantity  Int
-  orderId   String   @db.ObjectId
+  orderId   String
   order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
 }
