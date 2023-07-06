@@ -5,11 +5,11 @@ import { AiFillInstagram } from "react-icons/ai";
 export const Footer = () => {
   return (
     <div className="mt-20 flex h-12 items-center justify-center gap-8 bg-[#eee5e5] shadow">
-      <a href="https://github.com/So8oS" target="_blank">
+      <a href="https://github.com/So8oS" target="_blank" rel="noreferrer">
         <AiFillGithub className="h-5 w-5" />
       </a>
 
-      <a href="https://www.instagram.com/cookiemonster.ist/" target="_blank">
+      <a href="https://www.instagram.com/cookiemonster.ist/" target="_blank" rel="noreferrer">
         <AiFillInstagram className="h-5 w-5" />
       </a>
     </div>
