@@ -3,14 +3,9 @@ import Credentials from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { compare } from "bcrypt";
 import prismadb from "../../../../lib/prismadb";
-import GoogleProvider from "next-auth/providers/google";
 
 export const authOptions = {
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID || "",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
-    }),
     Credentials({
       id: "credentials",
       name: "Credentials",
@@ -49,22 +44,7 @@ export const authOptions = {
       },
     }),
   ],
-  // callbacks: {
-  //   async jwt({ token, user }) {
-  //     if (user?.id) {
-  //       token.id = user.id;
-  //     }
-  //     if (user?.userName) {
-  //       token.userName = user.userName;
-  //     }
-  //     return token;
-  //   },
-  //   async session({ session, token }) {
-  //     session.id = token.id;
-  //     session.userName = token.userName;
-  //     return session;
-  //   },
-  // },
+
   pages: {
     signIn: "/auth",
     error: "/auth",
