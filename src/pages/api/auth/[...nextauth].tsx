@@ -6,44 +6,44 @@ import prismadb from "../../../../lib/prismadb";
 
 export const authOptions = {
   providers: [
-    process.env.VERCEL_ENV === "preview"
-      ? Credentials({
-      id: "credentials",
-      name: "Credentials",
-      credentials: {
-        email: {
-          label: "Email",
-          type: "text",
-        },
-        password: {
-          label: "Password",
-          type: "password",
-        },
-      },
-      async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
-          throw new Error("Email and password required");
-        }
-
-        const user = await prismadb.user.findUnique({
-          where: {
-            email: credentials.email,
+    process.env.VERCEL_ENV === "preview" &&
+      Credentials({
+        id: "credentials",
+        name: "Credentials",
+        credentials: {
+          email: {
+            label: "Email",
+            type: "text",
           },
-        });
+          password: {
+            label: "Password",
+            type: "password",
+          },
+        },
+        async authorize(credentials) {
+          if (!credentials?.email || !credentials?.password) {
+            throw new Error("Email and password required");
+          }
 
-        if (!user || !user.hashedPassword) {
-          throw new Error("Email does not exist");
-        }
+          const user = await prismadb.user.findUnique({
+            where: {
+              email: credentials.email,
+            },
+          });
 
-        const isCorrectPassword = await compare(credentials.password, user.hashedPassword);
+          if (!user || !user.hashedPassword) {
+            throw new Error("Email does not exist");
+          }
 
-        if (!isCorrectPassword) {
-          throw new Error("Incorrect password");
-        }
+          const isCorrectPassword = await compare(credentials.password, user.hashedPassword);
 
-        return user;
-      },
-    }),
+          if (!isCorrectPassword) {
+            throw new Error("Incorrect password");
+          }
+
+          return user;
+        },
+      }),
   ],
 
   pages: {
