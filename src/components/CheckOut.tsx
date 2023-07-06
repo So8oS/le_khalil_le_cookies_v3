@@ -13,7 +13,7 @@ const CheckOut = () => {
   const [items, setItems] = useAtom(cartAtom);
   const [error, setError] = React.useState();
   const notify = () => toast("Order Sent");
-  const erorrnot = () => toast(error);
+  const erorrnot = () => toast("plaesw sign in to order");
   const router = useRouter();
 
   const itemsWithoutId = items
@@ -43,7 +43,7 @@ const CheckOut = () => {
 
       router.push("/");
     } catch (error: string | any) {
-      setError(error.response.data.error);
+      await setError(error.response.data.error);
       erorrnot();
     }
   };

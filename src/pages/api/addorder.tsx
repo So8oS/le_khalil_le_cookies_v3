@@ -12,13 +12,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // @ts-ignore
     const session = await getServerSession(req, res, authOptions);
-    if (!session) return res.status(401).end();
+    if (!session) {
+      return res.status(401).json({ error: "Please sign in to order :)" });
+    }
 
     const { items, total } = req.body;
-
-    if (!session) {
-      return res.status(400).json({ error: "Please sign in to order :)" });
-    }
 
     const userId = await prismadb.user.findUnique({
       where: {
