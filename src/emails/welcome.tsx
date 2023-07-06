@@ -2,7 +2,7 @@ import { Body, Button, Container, Column, Head, Heading, Hr, Html, Img, Link, Pr
 
 import * as React from "react";
 
-export default function Email({ email, name }) {
+export default function Email({ email, name }: { email: string; name: string }) {
   return (
     <Html>
       <Tailwind
