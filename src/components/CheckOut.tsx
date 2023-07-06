@@ -13,7 +13,7 @@ const CheckOut = () => {
   const [items, setItems] = useAtom(cartAtom);
   const [error, setError] = React.useState();
   const notify = () => toast("Order Sent");
-  const erorrnot = () => toast("plaesw sign in to order");
+  const erorrnot = () => toast(error);
   const router = useRouter();
 
   const itemsWithoutId = items
