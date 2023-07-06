@@ -6,7 +6,7 @@ import { AiOutlineGoogle } from "react-icons/ai";
 import { getSession, signIn } from "next-auth/react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { NextPageContext } from "next";
 
 export async function getServerSideProps(context: NextPageContext) {
@@ -29,6 +29,7 @@ export async function getServerSideProps(context: NextPageContext) {
 const Auth = () => {
   const [varient, setVarient] = React.useState("login");
   const [error, setError] = useState<string | null>(null); // State variable for holding the error message
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const {
     register,
@@ -43,6 +44,7 @@ const Auth = () => {
   const login = useCallback(
     async (data: { email: string; password: string }) => {
       const { email, password } = data;
+      setLoading(true);
       try {
         const response = await signIn("credentials", {
           email,
@@ -50,6 +52,7 @@ const Auth = () => {
           callbackUrl: "/",
           redirect: false,
         });
+        setLoading(false);
 
         if (response?.error) {
           setError(response.error);
@@ -66,6 +69,7 @@ const Auth = () => {
 
   const userRegister = useCallback(
     async (data: { name: string; email: string; password: string }) => {
+      setLoading(true);
       const { name, email, password } = data;
       try {
         await axios.post("/api/register", {
@@ -78,6 +82,7 @@ const Auth = () => {
 
         console.log("success");
         login(data);
+        setLoading(false);
       } catch (err: any) {
         console.log("error", err.response.data.error);
         setError(err.response.data.error);
@@ -135,9 +140,15 @@ const Auth = () => {
                 {errors.password.message}
               </p>
             )}
-            <button className="text h-9 w-full rounded-3xl bg-[#F45867] text-white shadow " type="submit">
-              {varient === "login" ? "Sign In" : "Register"}
-            </button>
+            {loading ? (
+              <button className="text h-9 w-full animate-pulse rounded-3xl bg-[#F45867] text-white shadow" type="submit">
+                Loading...
+              </button>
+            ) : (
+              <button className="text h-9 w-full rounded-3xl bg-[#F45867] text-white shadow " type="submit">
+                {varient === "login" ? "Sign In" : "Register"}
+              </button>
+            )}
           </div>
         </form>
         <div className="mt-5 flex flex-col items-center justify-center gap-4">
