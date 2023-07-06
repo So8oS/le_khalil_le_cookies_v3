@@ -6,7 +6,8 @@ import prismadb from "../../../../lib/prismadb";
 
 export const authOptions = {
   providers: [
-    Credentials({
+    process.env.VERCEL_ENV === "preview"
+      ? Credentials({
       id: "credentials",
       name: "Credentials",
       credentials: {
