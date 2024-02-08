@@ -40,3 +40,7 @@ Khalil’s French skills are on point (mine, not so much). So in his honor and w
 
 And that's a wrap! I hope this project description gives "Le Khalil Le Cookies" the spotlight it deserves. May the cookies be with you!
 
+### ⚡ Demo
+https://github.com/So8oS/le_khalil_le_cookies_v3/assets/62267611/27e0b250-7c4c-46c4-b91b-a9b9c31e56ee
+
+
