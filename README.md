@@ -1,38 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Le Khalil Le Cookies: A Sweet Blast from the Past!
 
-## Getting Started
+### 🚀 Intro, Anyone?
+So, let me take you on a trip down memory lane. Back in the day, when I was still figuring out what the heck web dev was all about, my buddy Khalil Selyan was whipping up some wicked cookies at uni. Being the good friend that I am, I started working on this cool project for his cookie biz as a birthday gift. But let's be real, my early web dev days were like trying to bake without a recipe - I had no clue! So, the project was left gathering virtual dust.
 
-First, run the development server:
+Fast forward, and here we are! After putting some serious coding hours and love into it, I decided to give ol' “Le Khalil Le Cookies” the makeover it deserved.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+### 🍪 The Cookies That Were
+Khalil, man, he was the Cookie King! But time flies and his cookie empire isn't around anymore (yeah, bummer!). But hey, this project is like a sweet tribute to those good times.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🎨 Pixel Art Magic
+Wait, did I mention that this app is wrapped in pure pixel art goodness? That's right! The design is a love letter to the pixel art, giving the app a nostalgic and fun vibe. It's like taking a bite out of a pixel cookie!
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### ✨ What's In It?
+So, let’s spill the beans (or should I say, cookies?). This baby’s almost done and you can check out the demo below. The prices are a throwback to the days before the Turkish Lira decided to go skydiving without a parachute.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- **Role-based auth?** Check.
+- **Notifications?** Oh yeah.
+- **Email confirmation?** You bet.
+- **CRUD?** Like a boss.
+- **Payment system?** Nah, back then we were all about that cash-on-delivery life at uni.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### The Techy Ingredients
+Alright, my fellow code-crunchers, here’s what’s under the hood:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Next.js:** The backbone!
+- **Tailwind CSS:** Making it all pretty.
+- **Next Auth:** Keeping those logins legit.
+- **Prisma:** My database sidekick.
+- **Jotai:** State management baby.
+- **React Toastify:** NOTIFICATIONSS!
+- **React Hook Form:** Handling those forms like a pro.
+- **React Email and Resend:** Making emails shine.
+- Resend: Getting those emails out there.
+- **Axios & SWR:** The tag team for fetching and API calls.
+- **Bcrypt:** Keeping passwords on lockdown.
 
-## Learn More
+### 🌍  Why “Le Khalil Le Cookies”?
+Khalil’s French skills are on point (mine, not so much). So in his honor and with a dash of humor, "Le Khalil Le Cookies" was born. It’s got that je ne sais quoi, don’t ya think?
 
-To learn more about Next.js, take a look at the following resources:
+And that's a wrap! I hope this project description gives "Le Khalil Le Cookies" the spotlight it deserves. May the cookies be with you!
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
